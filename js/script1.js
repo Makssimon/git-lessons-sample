@@ -1,8 +1,8 @@
 "use strict"; // директива объявляющая использование нами обновленной версии написания кода
-//вывод всплывающего окна на экран с текстом
+/**************вывод всплывающего окна на экран с текстом***********/
 //alert("Hi people");
 
-//вывод действия выбора на экран
+/**********вывод действия выбора на экран***************/
 //const result = confirm("Are your shere?");
 //console.log(result);//в консоле будет true
 
@@ -24,7 +24,7 @@ document.write(typeof(answer)); // - массив это частный случ
 const category = "toys";
  console.log(`https://someurl.com/${category}/5`);
 
- const user = "Ivan";
+ /*const user = "Ivan";
  alert (`Привет,${user}`);
 
 
