@@ -1,12 +1,22 @@
 "use strict"; // директива объявляющая использование нами обновленной версии написания кода
 
 //Создаем программу ИСТОРИЯ ПРОСМОТРА ФИЛЬМОВ
-
-//1) Создаем переменную и в нее помещаем ответ от пользователя
-
-const numberOfFilms = +prompt ("Сколько фильмов Вы уже посмотрели?", ""); //ответ всегда число, за это отвечает +
+//1) Создаем переменную глобально и в нее помещаем каждый раз ответы от пользователя
+let numberOfFilms;
 //alert(numberOfFilms); //выводим вопрос в браузер
 //console.log(typeof(numberOfFilms)) //сохраняем введенное значение
+//1.1 Валидируем введенный текст после нажатия на ОК
+function start() {
+    numberOfFilms = +prompt ("Сколько фильмов Вы уже посмотрели?", ""); //обьявляем локальную переменную куда записываем ответ пользователя всегда число, за это отвечает +
+    //создаем цикл и:проверяем некорректные вводы
+    //и если не корерктные то вопрос будет повторен
+    // || или возвращает true когда один из элементов сработает, т.е. возобновит вопрос(is Nan возвращает true ели пользователь вернет не число, то что нам и нужно)
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt ("Сколько фильмов Вы уже посмотрели?", ""); //повторяем вопрос пользоваетл.
+    }
+}
+
+start();
 
 //2) Создаем объект для сбора и обработки данных
 const personalMovieDB = {
@@ -24,26 +34,56 @@ const personalMovieDB = {
  //     d = +prompt("Поставьте оценку просмотренному фильму по шкале от 1 до 10 :" , "");
  //     personalMovieDB.movies["a"] = "b";
  //     personalMovieDB.movies["c"] = "d";
-for (let i = 0; i < 2; i++){
-    const a = prompt("Один из последних просмотренных фильмов?", ""),
+
+ //3.1 оборачиваем в функцию, чтобы вызывать только по требованию!!!
+function rememberMyFilms(){
+    for (let i = 0; i < 2; i++){
+        const a = prompt("Один из последних просмотренных фильмов?", "").trim(),//trim убирает пробельные символы в начале и конце строки
           b = prompt("Поставьте оценку просмотренному фильму по шкале от 1 до 10 :" , "");
     //перем-я a не д/б = nullб т.е. пользователь не должен нажать кнопку отмена и т.д.
-    if (a != null && b != null && a != "" && b != "" && a.length < 50) {
+        if (a != null && b != null && a != "" && b != "" && a.length < 50) {
         personalMovieDB.movies[a] = b;
         console.log('Done');
-     } else { //если ни одно из условий не было выполнено, то
+        } else { //если ни одно из условий не было выполнено, то
         console.log('Error');
         i--; // возвращаемся на шаг назад, снова задаем a и b
+        }
     }
 }
-console.log(personalMovieDB);
+//временно/ rememberMyFilms();
 
-if (personalMovieDB.count < 10){
-    console.log("Просмотрено достаточно мало новых фильмов");
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
-    console.log("Вы классический зритель");
-} else if (personalMovieDB.count >= 30){
-    console.log("Вы киноман");
-} else {
-    console.log("Произошла ошибка");
+//3.2 оорачиваем в функцию
+function detectorPersonalLevel(){
+    if (personalMovieDB.count < 10){
+        console.log("Просмотрено достаточно мало новых фильмов");
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
+        console.log("Вы классический зритель");
+    } else if (personalMovieDB.count >= 30){
+        console.log("Вы киноман");
+    } else {
+        console.log("Произошла ошибка");
+    }
 }
+//временно/ detectorPersonalLevel();
+
+//3.3 Создаем функцию отображения DB проверяющую свойство private
+//вычисления производим над объектом personalMovieDB взаимодействуя с privat.
+function showMyBD(hidden){ //hidden - произвольный аргумен
+    if(!hidden){ //если наша BD не скрыта !hidden
+        console.log(personalMovieDB);//тода показываем ее в консоль
+    }
+};
+//чтобы функция сработала передаем название объекта и элемент с которым работаем
+showMyBD(personalMovieDB.privat);
+
+//создаем массив добавления жанров по номерам;
+function writeYourGenres() {
+    //так как задаем один и тот же вопрос то создаем цикл
+    for(let i  = 1; i <= 3; i++){ //почему i = 1, т.к. пользователю удобнее отсчет от 1
+        //присваиваем элементу массива genre [ i - 1], (т.к. для присваивание в программе начинается с индекса 0 )
+        //введенные пользователем данные.
+        personalMovieDB.genres[i - 1] =prompt(`Ваш любимый жанр под номером ${i}`);
+    }
+}
+
+writeYourGenres();
