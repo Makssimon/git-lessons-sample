@@ -190,13 +190,16 @@ function showFamily(arrayFamily){
         str = "Семья состоит из: ";
     }    
     arrayFamily.forEach(member =>{
-        str += `${member.join('; ')} `});
+        str += `${member} `
+    });
         return str;      
 };
 showFamily(arrayFamily);
 console.log(newString);
 
-//2) напишите функцию standardizeStrings, которая будет принимать в себя массив строк 
+//////////////////////////////////////
+/////////////ЗАДАЧА 3/////////////////
+// напишите функцию standardizeStrings, которая будет принимать в себя массив строк 
 //вывод в консоль строки в нижнем регистре.
 const favoriteCities = ['liSSaBon', 'ROME', 'miLan', 'Dublin'];
 
@@ -213,4 +216,98 @@ const showFamily = arr26 => arr26.length ?
  `Семья состоит из: ${arr26.join(' ')}` 
  : `Семья пуста`;
 
+ //////////////////////////////////////
+/////////////ЗАДАЧА 4/////////////////
+//Напишите функцию reverse, которая принимает в себя строку и 
+//возвращает эту строку в обратном порядке.
+//Пример: 
+const someString = ["Almaty", "Astana", "Karagandy", "Shymkent"];
+const reverse = someString.reverse();
+//reverse(someString) => 'gnirts egnarts emos si sihT'
+console.log(reverse);
+
+//варианты
+const someString = 'This is some strange string';
+
+function reverse(str){
+    if (typeof(str) !== 'string') {
+            return "Ошибка!";
+        }
+        // Самый оптимальный вариант решения
+        console.log(str.split('').reverse().join(''));
+        return str.split('').reverse().join('');
+            // Решение при помощи цикла
+        // let newStr = '';
+        // for (let i = str.length - 1; i >= 0; i--) {
+        //     newStr += str[i];
+        // }
+        // return newStr
+};
+reverse(someString);
+
+//////////////////////////////////////
+/////////////ЗАДАЧА 5/////////////////
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+
+function availableCurr(arr, missingCurr) {
+    let str = '';
+    arr.length === 0 ? str = 'Нет доступных валют' : str = 'Доступные валюты:\n';
+
+    arr.forEach(function(curr, i) {
+        if (curr !== missingCurr) {
+            str += `${curr}\n`;
+        }
+    });
+
+    // Или
+    // for (let i = 0; i < arr.length; i++) {
+    //     if (arr[i] === missingCurr) {
+    //         continue;
+    //     }
+    //     str += `${arr[i]}\n`;
+    // }
+
+    return str;
+}
+
+availableCurr([...baseCurrencies, ...additionalCurrencies], 'CNY')
+
+//2 вариант
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
  
+let totalCurrencies = baseCurrencies.concat(additionalCurrencies); /* объединяем элементы обеих массивов в новый массив */
+ 
+function availableCurr(arr, missingCurr) { // в arr приходит ['USD','EUR','UAH','RUB','CNY'];
+ 
+    let str = 'Доступные валюты:\n';
+ 
+    if (arr.length == 0) {
+        str = 'Нет доступных валют'; 
+    } else {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === missingCurr) {
+                continue;
+            } else {
+                str += `${arr[i]}\n`; 
+            }
+        }
+    }
+ 
+    return str;
+}
+ 
+availableCurr(totalCurrencies,'EUR');
+
+
+
+
+
+
+
+
+
+
+
+
