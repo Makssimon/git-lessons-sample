@@ -10,7 +10,7 @@
             console.log(num);//вначале ищет num внутри функции, если не находит, то ищет глобальную 
         };
 //!!!!!имя функции должно быть с глаголом и припиской над чем выполняется действия!!!
-        //саоме Важной, функцию нужно вызвать и передать ей аргумента в ()!!!
+        //самое Важное, функцию нужно вызвать и передать ей аргумента в ()!!!
         showFirstMessage("Hello world!");
         console.log(num);//Важно, всегда обращается к глобальной переменной,
         // внутри функции он ее не увидит, 
@@ -34,11 +34,11 @@
             //....
             return(num); //возвращаем значение num "наружу"
         }; //- не ставим при function declaration
-        const anotherNum = ret(); //зададим постоянную переменную и присвоим ей результат выполненной функции
-        console.log(anotherNum); //вывод 
+        const anotherNum1 = ret(); //зададим постоянную переменную и присвоим ей результат выполненной функции
+        console.log(anotherNum1); //вывод 
 
         //function expression
-        //создадим переменную и поместим в нее функция
+        //создадим переменную и поместим в нее функцию
         const logger = function(value){
             console.log(value)
         }; //- ставим при function expression
@@ -76,6 +76,7 @@
     console.log('example of function returning a function: ', sum);
 
 //замыкание часть 3
+//одна функция возвращает другую функцию
 function createCounter() {         //1
     let counter = 0                //2
     const myFunction = function() { //3
@@ -172,44 +173,16 @@ function createCounter() {         //1
 //Создайте функцию, которая принимает в себя 1 аргумент в виде целого числа и
 // возвращает массив из трех чисел: одно на 1 меньше, сам аргумент, и число на 1 больше.
 //Пример: вызов функции returnNeighboringNumbers(5) возвращает массив в виде [4, 5, 6].
-let value = returnNeighboringNumbers();
-console.log(value);
-
 function returnNeighboringNumbers(num) {
     const array = [];
         array[0] = (num - 1);
         array[1] = num;
         array[2] = (num + 1);
     //console.log(array);
-    return (array); 
-}
-returnNeighboringNumbers(5);
-
-function ret(num){
-    let array = []
-        array[0] = (num - 1);
-        array[1] = num;
-        array[2] = (num + 1);
-        return(array); //возвращаем значение num "наружу"
-}; //- не ставим при function declaration
-const anotherNum = ret([]); //зададим постоянную переменную и присвоим ей результат выполненной функции
-console.log(anotherNum); //
-ret(5);
-
-//вариант удэми
-//пример одной из задач выше
-const newArr = returnNeighboringNumbers(5);
-
-function returnNeighboringNumbers(num) {
-    const array = [];
-        array[0] = (num - 1);
-        array[1] = num;
-        array[2] = (num + 1);
-    //console.log(array);//в данном случай выдает в консоль нужный ответ [ 4, 5, 6 ]
-    return array; 
-}
-console.log(newArr);//а вот здесь array is not defined
-//returnNeighboringNumbers(5);
+    return (array); //возвращаем значение num "наружу"
+};//- не ставим при function declaration
+const value = returnNeighboringNumbers(5);//зададим постоянную переменную и присвоим ей результат выполненной функции
+console.log(value);
 
 //1. Создайте функцию, принимающую 2 аргумента числа: 
 // 1е число - база, 2е число - то, сколько раз повторить его в прогрессии.
@@ -221,7 +194,7 @@ console.log(newArr);//а вот здесь array is not defined
 //возвращать просто первый аргумент. (Проверяем через оператор typeof)
 function getMathResult(num, value) { 
     if (typeof(value) !== 'number' || value <= 0) { //если множитель не число, отрицательное или нуль
-        return num; //то мы возвращаем в только наше число num
+        return num; //то мы возвращаем только наше число num
     }
 
     let str = ''; //задаем переменную пустую
@@ -239,7 +212,6 @@ function getMathResult(num, value) {
     console.log(str);
     return str;
 }
-
 getMathResult(10, 5);
 
 //***ПРОДВИНУТЫЕ ЗАДАЧКИ/
@@ -279,7 +251,6 @@ getMathResult(10, 5);
     
         return `Объем куба: ${volume}, площадь всей поверхности: ${area}`;
     }
-    
     calculateVolumeAndArea(5);
 
 //2 задача
@@ -490,6 +461,15 @@ function fib(num) {
     return res;
   }
   fib(5);
+
+///////////////**задача из теста/////////////////////// */
+  function foo(a,b) {
+    const [first] = a;
+    const {eng} = b;
+    return `${first} ${eng}`;
+    }
+    const result = foo(['Hello', 'Привет'], {ru: 'Мир', eng: 'World'})
+    console.log(result);
 
    
   

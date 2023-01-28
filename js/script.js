@@ -32,12 +32,12 @@ console.log (obj);
 obj.age = 50;
 console.log(obj.name);
 console.log(obj["name"]);
-console.log("мя объекта: "+ obj.name + " ;" + " возраст объекта - " + obj.age + " лет.");
+console.log("имя объекта: "+ obj.name + " ;" + " возраст объекта - " + obj.age + " лет.");
 //console.log(obj.1);
 console.log(obj[1]);
 
 // массив. по сут тот е объект
- //ключи всегда одни               0       1      2       3
+ //ключи всегда одни               0       1       2  3    4
                     let array = [ "opel" , "BMW" , 6, {} , []]
                     console.log (array[1]);
                     console.log(array[1] + " " + array[2]);

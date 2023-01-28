@@ -25,7 +25,7 @@ if (num<49) {
 //результатом логических операция, это всегда булевое значение, в данном случае true
 /*const hamburger = true;
 const fries = true;
-if (hamburger && fries) { console.log("Я сыт");};
+if (hamburger && fries) { console.log("Я сыт")};
  console.log((hamburger && fries)); 
 
 const num = 50;
